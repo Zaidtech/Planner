@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APP</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head> 
+<body>
+    
+ 
+    <h1 style="text-align: center; background-color: rgb(253, 253, 253); color:black; position:fixed; width: 100%;">PLAN IT</h1>
+
+<!-- main frontend!!!   -->
+
+<div class="container">
+    <div class="calendar">
+        <div class="month">
+            <i class="fas fa-angle-left prev"></i>
+
+            <div class="date">
+                <h1></h1>
+                <p></p>
+            </div>
+            <i class="fas fa-angle-right next"></i>
+        </div>
+            <div class="weekdays">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>            
+            <div class="days">
+             
+
+            </div>
+                
+            <div>               
+
+                <p class="addTask"  id="Current date"  onclick="openFormToggle(this.id)">
+                        +
+                </p>
+             </div> 
+                <!-- <% task_dates.forEach(function(element){ %>
+                    <p id=`${element}` class="task_dates"> <%= element.date%> </p>
+                <% }); %>  -->
+         
+        <div style="display: flex;">
+            <form action="/addteacher", method="POST">
+                <input type="text" required name="teachername" placeholder="Add Teacher " />
+                <button> ADD Teacher</button>
+            </form>
+            
+
+
+            <form action="/rt", method="POST" style="padding-left: 20px;" >
+                
+                <select name="teachername" >
+                    <% teachers.forEach(function(teacher){ %>
+                        <option value= <%= teacher %> > Prof. <%= teacher %>  </option>
+                    <% }); %>
+                </select>
+                
+                <button>Remove Teacher</button>
+            </form> 
+    
+        </div> 
+
+
+    </div>
+</div>
+
+<div class="form-popup" id="myForm">
+
+    <div align="center">
+        <h1>
+            Enter Teacher's Task
+        </h1>   
+
+        
+        <form action="/addtask", method="POST" style="padding-top:20px;">
+            <input type="text" name="task" placeholder="Enter task" required/>
+            <!-- use Json instead!! -->
+            <select name="teacher" >
+                <% teachers.forEach(function(teacher){ %>
+                    <option value= <%= teacher %> > Prof. <%= teacher %>  </option>
+                <% }); %>
+            </select>
+
+            <!--if the date is clicked get that elemtny and set date to  that element!!  -->
+            <!-- if + is clicked set todays date as default!! -->
+            <input type="date", name="date"   class = "tdate" placeholder="Enter date"/>
+            <br>
+            <input type="time" name="stime"/>
+            <input type="time" name="etime" />
+            
+            <button style="background-color: cadetblue">ADD Task</button>
+        </form>
+        
+
+    </div> 
+</div>
+
+
+
+<script>
+
+function openForm(id,month) {
+  document.getElementById("myForm").classList.add("form-container");
+//   alert(`${id} clicked me`)
+  var date= new Date();
+  date.setMonth(month);
+  date.setDate(id);
+
+
+//   console.log(date);
+    // alert(date);
+//   console.log(`Month is ${ date.getMonth()}`);
+//   console.log(`${id} clicked me!!`)
+    // date.setMonth(month);
+    // console.log(date);
+    // alert(date.toISOString().slice(0, 10));
+    document.querySelector(".tdate").value = date.toISOString().slice(0, 10);
+    
+}
+
+
+function openFormToggle(id) {
+//   when + signed is clicked add current date to the form!!
+    document.getElementById("myForm").classList.toggle('form-container');
+//   alert(`${id} clicked me`)
+    // console.log(`${id} clicked me!!`)
+    var date = new Date();
+    console.log(date);
+    // date is to be passed in form and det date to current date!!
+    document.querySelector(".tdate").value = date.toISOString().slice(0, 10);
+
+}
+
+
+</script>
+
+
+<script src="script.js" ></script>
+</body>
+</html>
