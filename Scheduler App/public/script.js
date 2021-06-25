@@ -87,6 +87,19 @@ const renderCalendar = () => {
 
 
 
+    
+function listTask() {
+        // alert("I am called!!");
+    var tag = document.createElement("p");
+           var text = document.createTextNode("Tutorix is the best e-learning platform");
+           tag.appendChild(text);
+        //    alert("Reached here as well!!!");
+           var element = document.querySelector('.task_list')
+           element.appendChild(tag);
+    }
+        //    alert("Stop!!!");
+
+
 document.querySelector(".prev").addEventListener("click", () => {
     date.setMonth(date.getMonth() - 1);
     renderCalendar();

@@ -85,9 +85,9 @@
 
         
         <form action="/addtask", method="POST" style="padding-top:20px;">
-            <input type="text" name="task" placeholder="Enter task" required/>
+            <input type="text" name="task" id="task" placeholder="Enter task" required/>
             <!-- use Json instead!! -->
-            <select name="teacher" >
+            <select name="teacher"  id="select">
                 <% teachers.forEach(function(teacher){ %>
                     <option value= <%= teacher %> > Prof. <%= teacher %>  </option>
                 <% }); %>
@@ -95,19 +95,21 @@
 
             <!--if the date is clicked get that elemtny and set date to  that element!!  -->
             <!-- if + is clicked set todays date as default!! -->
-            <input type="date", name="date"   class = "tdate" placeholder="Enter date"/>
+            <input type="date", name="date"  id="date" class = "tdate" placeholder="Enter date"/>
             <br>
-            <input type="time" name="stime"/>
-            <input type="time" name="etime" />
-            
-            <button style="background-color: cadetblue">ADD Task</button>
+            <input type="time" name="stime" id="stime"/>
+            <input type="time" name="etime" id="etime"/>
+            <!-- document.getElementById('task').value,  document.getElementById('select').value  -->
+            <button style="background-color: cadetblue" class="atsubmit">ADD Task</button>
         </form>
         
 
     </div> 
 </div>
 
+<div class="task_list" style="background-color: white;">
 
+</div>
 
 <script>
 
@@ -144,8 +146,8 @@ function openFormToggle(id) {
 }
 
 
+        // return false;
 </script>
-
 
 <script src="script.js" ></script>
 </body>
